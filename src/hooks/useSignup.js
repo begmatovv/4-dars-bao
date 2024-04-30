@@ -25,13 +25,11 @@ function useSignup() {
         // ...
       });
   };
-  const signupWithPasswordAndEmail = (name, photo, email, password) => {
-    console.log(email, password);
+  const signupWithPasswordAndEmail = (name, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         await updateProfile(auth.currentUser, {
-          displayName: name,
-          photoURL: photo,
+          displayName:name,
         });
         const user = userCredential.user;
         dispatch({ type: "SIGN_IN", payload: user });

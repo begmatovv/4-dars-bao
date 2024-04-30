@@ -8,14 +8,11 @@ export const action = async ({ request }) => {
   let name = formData.get("Name");
   let email = formData.get("Email");
   let password = formData.get("Password");
-  let url = formData.get("Photo");
 
-  return { password, email, name, url };
+  return { password, email, name };
 };
-const Signup = () => {
-  
+const Register = () => {
   let userSignup = useActionData();
-  console.log(userSignup);
   const { signUpWithGoogle, signupWithPasswordAndEmail, user, error } =
     useSignup();
   useEffect(() => {
@@ -23,17 +20,15 @@ const Signup = () => {
       signupWithPasswordAndEmail(
         userSignup.name,
         userSignup.email,
-        userSignup.password,
-        userSignup.url
+        userSignup.password
       );
     }
-  }, [userSignup]);
+  }, [userSignup])
   return (
     <div className="min-h-screen grid place-items-center">
       <div className="max-w-96 w-full">
-        <Form method="post">
+        <Form method="POST">
           <FormInput type="text" label="User name:" name="Name" />
-          <FormInput type="url" label="Photo URL:" name="Photo" />
           <FormInput type="email" label="Email:" name="Email" />
           <FormInput type="password" label="Password:" name="Password" />
           <div>
@@ -52,7 +47,7 @@ const Signup = () => {
             </button>
             <p className="text-center">
               Do you have already an account?{" "}
-              <Link className="link text-blue-500" to="/signin">
+              <Link className="link text-blue-500" to="/login">
                 Login
               </Link>
             </p>
@@ -63,4 +58,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Register;

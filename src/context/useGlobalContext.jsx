@@ -15,7 +15,11 @@ const changeState = (state, action) => {
 };
 
 export function GlobalContextProvider({ children }) {
-  const [state, dispatch] = useReducer(changeState, { user: null ,authChange:false});
+  const [state, dispatch] = useReducer(changeState, {
+    user: null,
+    authChange: false,
+  });
+
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
       {children}

@@ -16,9 +16,15 @@ import {
   SingleProduct,
   Error,
 } from "./pages";
+import { action as regAction } from "./pages/Register";
+import { action as logAction } from "./pages/Login";
+import { auth } from "./firebase/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 import { useContext, useEffect } from "react";
 import ProtectedRotes from "./components/ProtectedRotes";
+import { GlobalContext } from "./context/useGlobalContext";
 function App() {
+  const { user, dispatch, authChange } = useContext(GlobalContext);
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -61,17 +67,24 @@ function App() {
       ],
     },
     {
-      path: "/signin",
-      element: <Login />,
+      path: "/login",
+      element: user ? <Navigate to="/" /> : <Login />,
       errorElement: <Error />,
+      action: logAction,
     },
     {
       path: "/register",
-      element: <Register />,
+      element: user ? <Navigate to="/" /> : <Register />,
       errorElement: <Error />,
+      action: regAction,
     },
   ]);
-
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      dispatch({ type: "SIGN_IN", payload: user });
+      dispatch({ type: "AUTH_CHANGE" });
+    });
+  }, []);
   return <RouterProvider router={routes} />;
 }
 
