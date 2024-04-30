@@ -34,7 +34,7 @@ const Navbar = () => {
             C
           </Link>
           <div className="dropdown lg:hidden">
-            <button className=" btn  ">
+            <button className=" btn bg-transparent border-none shadow-none  ">
               <svg
                 stroke="currentColor"
                 fill="currentColor"

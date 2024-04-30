@@ -13,18 +13,23 @@ const links = [
   },
   {
     id: 3,
+    text: "Products",
+    link: "/products",
+  },
+  {
+    id: 4,
     text: "Cart",
     link: "/cart",
   },
   {
-    id: 4,
+    id: 5,
     text: "Checkout",
     link: "/checkout",
   },
   {
-    id: 5,
-    text: "Products",
-    link: "/products",
+    id: 6,
+    text: "Orders",
+    link: "/orders",
   },
 ];
 function Navlinks() {
