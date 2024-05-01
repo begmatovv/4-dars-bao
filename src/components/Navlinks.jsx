@@ -38,7 +38,7 @@ function Navlinks() {
       {links.map((link) => {
         return (
           <Link
-            className="p-2 px-4 hover:bg-neutral-content rounded-lg "
+            className="p-2 px-4 focus:bg-neutral focus:text-white hover:bg-neutral-content  rounded-lg  "
             key={link.id}
             to={link.link}
           >

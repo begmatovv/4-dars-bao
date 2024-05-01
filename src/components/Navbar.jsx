@@ -52,7 +52,7 @@ const Navbar = () => {
                   tabIndex={0}
                   className="dropdown-content menu p-2 shadow text-content bg-base-100 rounded-box w-52"
                 >
-                  <Navlinks />
+                  <Navlinks  />
                 </ul>
               </div>
             </button>
