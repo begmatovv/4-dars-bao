@@ -54,7 +54,7 @@ const SingleProduct = () => {
                 <button
                   type="button"
                   className="badge w-6 h-6 mr-2 border-2 border-secondary"
-                ></button>
+                > </button>
                 <button
                   type="button"
                   className="badge w-6 h-6 mr-2 border-2 border-secondary "
