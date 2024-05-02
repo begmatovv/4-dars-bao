@@ -1,13 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../components";
-import TopSide from "../components/TopSide";
-import Signout from "./Signout";
+import { Header, Navbar } from "../components";
 
 const Home = () => {
   return (
     <div>
-      <TopSide className="align-element" />
+      <Header />
       <Navbar className="align-element" />
       <main className="align-element">
         <Outlet />

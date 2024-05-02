@@ -34,7 +34,6 @@ function App() {
         </ProtectedRotes>
       ),
       errorElement: <Error />,
-
       children: [
         {
           index: true,
@@ -79,13 +78,14 @@ function App() {
       action: regAction,
     },
   ]);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       dispatch({ type: "SIGN_IN", payload: user });
       dispatch({ type: "AUTH_CHANGE" });
     });
   }, []);
+
   return <RouterProvider router={routes} />;
 }
-
 export default App;

@@ -1,14 +1,12 @@
-import { useEffect,useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-const Products = () => {
-  
+const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://strapi-store-server.onrender.com/api/products"
+          "https://strapi-store-server.onrender.com/api/products?featured=true"
         );
         const data = await response.json();
         setProducts(data.data);
@@ -16,11 +14,16 @@ const Products = () => {
         console.error("Error fetching featured products:", error);
       }
     };
-  
+
     fetchData();
   }, []);
+
   return (
-    <div>
+    <div className="align-element pt-24 py-20">
+      <h3 className="text-3xl border-b border-base-300 pb-5 font-medium tracking-wider capitalize">
+        Featured Products
+      </h3>
+
       <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
           <Link
@@ -50,5 +53,4 @@ const Products = () => {
   );
 };
 
-export default Products;
-
+export default FeaturedProducts;

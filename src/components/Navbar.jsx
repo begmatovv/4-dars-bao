@@ -38,9 +38,9 @@ const Navbar = () => {
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                stroke-width="0"
+                strokeWidth="0"
                 viewBox="0 0 512 512"
-                class="h-6 w-6"
+                className="h-6 w-6"
                 height="1em"
                 width="1em"
                 xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ const Navbar = () => {
             {/* moon icon */}
             <FaMoon className="swap-off fill-current w-6 h-6" />
           </label>
-          <AiOutlineShoppingCart className="w-6 h-6" />
+          <AiOutlineShoppingCart className="w-6 h-6 mr-3" />
         </div>
       </div>
     </div>
