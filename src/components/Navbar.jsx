@@ -52,7 +52,7 @@ const Navbar = () => {
                   tabIndex={0}
                   className="dropdown-content menu p-2 shadow text-content bg-base-100 rounded-box w-52"
                 >
-                  <Navlinks  />
+                  <Navlinks />
                 </ul>
               </div>
             </button>
@@ -73,7 +73,12 @@ const Navbar = () => {
             {/* moon icon */}
             <FaMoon className="swap-off fill-current w-6 h-6" />
           </label>
-          <AiOutlineShoppingCart className="w-6 h-6 mr-3" />
+          <div className="indicator mr-3">
+            <AiOutlineShoppingCart className="w-6 h-6 " />
+            <span className="badge badge-sm badge-primary indicator-item">
+              0
+            </span>
+          </div>
         </div>
       </div>
     </div>

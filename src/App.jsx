@@ -23,6 +23,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useContext, useEffect } from "react";
 import ProtectedRotes from "./components/ProtectedRotes";
 import { GlobalContext } from "./context/useGlobalContext";
+import { loader as FeaturedLoader } from "./pages/Landing";
+import { loader as SingleLoader } from "./pages/SingleProduct";
+import { loader as ProductsLoader } from "./pages/Products";
 function App() {
   const { user, dispatch, authChange } = useContext(GlobalContext);
   const routes = createBrowserRouter([
@@ -38,18 +41,21 @@ function App() {
         {
           index: true,
           element: <Landing />,
+          loader: FeaturedLoader,
         },
         {
           path: "/products",
           element: <Products />,
+          loader: ProductsLoader,
         },
         {
           path: "/about",
           element: <About />,
         },
         {
-          path: "/product/:id",
+          path: "/products/:id",
           element: <SingleProduct />,
+          loader: SingleLoader,
         },
         {
           path: "/cart",

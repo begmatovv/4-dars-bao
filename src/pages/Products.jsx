@@ -1,54 +1,23 @@
-import { useEffect,useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useLoaderData } from "react-router-dom";
+import { customFetch, formatPrice } from "../utils";
+import ProductsContainer from "../components/ProductsContainer";
+import { Filters } from "../components";
+const url = "/products";
+export const loader = async ({ request }) => {
+  const response = await customFetch(url);
+  const products = response.data.data;
+  const meta = response.data.data;
+  return { products, meta };
+};
 const Products = () => {
-  
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://strapi-store-server.onrender.com/api/products"
-        );
-        const data = await response.json();
-        setProducts(data.data);
-      } catch (error) {
-        console.error("Error fetching featured products:", error);
-      }
-    };
-  
-    fetchData();
-  }, []);
+  const { products } = useLoaderData();
+
   return (
     <div>
-      <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
-          <Link
-            to={`/product/${product.id}`}
-            key={product.id}
-            className="card w-full shadow-xl hover:shadow-2xl transition duration-300"
-          >
-            <figure className="px-4 pt-4">
-              <img
-                src={product.attributes.image}
-                alt={product.attributes.title}
-                className="rounded-xl h-64 md:h-48 w-full object-cover"
-              />
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title capitalize tracking-wider">
-                {product.attributes.title}
-              </h2>
-              <span className="text-secondary">
-                ${product.attributes.price}
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <Filters />
+      <ProductsContainer />
     </div>
   );
 };
 
 export default Products;
-
