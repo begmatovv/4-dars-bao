@@ -10,6 +10,7 @@ const SingleProduct = () => {
   const { product } = useLoaderData();
   const { image, description, title, colors, company, price } =
     product.attributes;
+  const [productColor, setProductColor] = useState(colors[0]);
   const dollarAmount = formatPrice(price);
   const [amount, setAmount] = useState(0);
   return (
@@ -51,8 +52,9 @@ const SingleProduct = () => {
                   return (
                     <button
                       key={color}
-                      className={`badge w-6 h-6 mr-2`}
+                      className={`badge w-6 h-6 mr-2 ${color==productColor && " border-2 border-secondary"}`}
                       style={{ backgroundColor: color }}
+                      onClick={() => setProductColor(color)}
                     ></button>
                   );
                 })}

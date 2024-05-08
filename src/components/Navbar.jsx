@@ -66,7 +66,7 @@ const Navbar = () => {
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input type="checkbox" onClick={handleClick} />
-
+            
             {/* sun icon */}
             <FaSun className="swap-on fill-current w-6 h-6" />
 

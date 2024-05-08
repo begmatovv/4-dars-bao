@@ -25,11 +25,12 @@ const ProductsContainer = () => {
         </h4>
         <div className="flex gap-x-2">
           <button>
-          <PiGridFourFill  onClick={() => {
+            <PiGridFourFill
+              onClick={() => {
                 setLayout("grid");
               }}
-              className={setActiveStyles("grid")} />
-            
+              className={setActiveStyles("grid")}
+            />
           </button>
           <button>
             <RxHamburgerMenu
@@ -49,7 +50,6 @@ const ProductsContainer = () => {
         ) : (
           <ProductsList />
         )}
-        <ProductsGrid />
       </div>
     </>
   );
