@@ -1,19 +1,21 @@
-import { Link, useLoaderData } from "react-router-dom";
-import { customFetch, formatPrice } from "../utils";
-import ProductsContainer from "../components/ProductsContainer";
-import { Filters } from "../components";
+import { customFetch } from "../utils";
+import { Filters, ProductPagination, ProductsContainer } from "../components";
 const url = "/products";
 export const loader = async ({ request }) => {
-  const response = await customFetch(url);
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+  const response = await customFetch(url, { params });
   const products = response.data.data;
   const meta = response.data.meta;
   return { products, meta };
 };
 const Products = () => {
   return (
-    <div>
+    <div className="py-20">
       <Filters />
       <ProductsContainer />
+      <ProductPagination />
     </div>
   );
 };

@@ -1,61 +1,26 @@
-import { Link, Form, useActionData } from "react-router-dom";
-import { useSignup } from "../hooks/useSignup";
-import { FcGoogle } from "react-icons/fc";
-import FormInput from "../components/FormInput";
-import { useEffect } from "react";
-export const action = async ({ request }) => {
-  let formData = await request.formData();
-  let name = formData.get("Name");
-  let email = formData.get("Email");
-  let password = formData.get("Password");
+import { FormInput , SubmitBtn } from "../components"
+import { Link, Form } from "react-router-dom"
 
-  return { password, email, name };
-};
-const Register = () => {
-  let userSignup = useActionData();
-  const { signUpWithGoogle, signupWithPasswordAndEmail, user, error } =
-    useSignup();
-  useEffect(() => {
-    if (userSignup) {
-      signupWithPasswordAndEmail(
-        userSignup.name,
-        userSignup.email,
-        userSignup.password
-      );
-    }
-  }, [userSignup])
+function Register() {
   return (
-    <div className="min-h-screen grid place-items-center">
-      <div className="max-w-96 w-full">
-        <Form method="POST">
-          <FormInput type="text" label="User name:" name="Name" />
-          <FormInput type="email" label="Email:" name="Email" />
-          <FormInput type="password" label="Password:" name="Password" />
-          <div>
-            <button
-              className="btn btn-secondary w-full mb-3 text-xl"
-              type="submit"
-            >
-              Submit
-            </button>
-            <button
-              onClick={signUpWithGoogle}
-              className="btn btn-primary w-full  mb-5"
-            >
-              <FcGoogle className="text-3xl" />
-              <span className="text-2xl">Google</span>
-            </button>
-            <p className="text-center">
-              Do you have already an account?{" "}
-              <Link className="link text-blue-500" to="/login">
-                Login
-              </Link>
-            </p>
-          </div>
-        </Form>
-      </div>
+    
+        <div className='h-screen grid place-content-center'>
+      <Form method="post" className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4">
+        <h4 className="text-center font-bold text-3xl">Register</h4>
+        <FormInput type="text" label="Display Name :" name="displayName" defaultvalue="User Name"/>
+        <FormInput type="url" label="Photo URL" name="photoURL" defaultvalue="https://photoURL.com"/>
+        <FormInput type="password" label="Password" name="password" defaultvalue="00000000"/>
+        <div className="mt-4">
+          <SubmitBtn text=""/>
+        </div>
+        
+        <p className="text-center">Not a member yet ?
+        <Link to="/login" className="capitalize link">Login</Link>
+        </p>
+      </Form>
     </div>
-  );
-};
+    
+  )
+}
 
-export default Register;
+export default Register

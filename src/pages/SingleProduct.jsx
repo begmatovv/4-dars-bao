@@ -2,17 +2,34 @@ import { Link, useLoaderData } from "react-router-dom";
 import { customFetch, generateAmountOptions } from "../utils";
 import { formatPrice } from "../utils";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
 export const loader = async ({ params }) => {
   const request = await customFetch(`products/${params.id}`);
   return { product: request.data.data };
 };
 const SingleProduct = () => {
+  const dispatch = useDispatch();
   const { product } = useLoaderData();
   const { image, description, title, colors, company, price } =
     product.attributes;
   const [productColor, setProductColor] = useState(colors[0]);
   const dollarAmount = formatPrice(price);
   const [amount, setAmount] = useState(0);
+
+  const cartProduct = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    amount,
+    productColor,
+    company,
+  };
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
   return (
     <>
       <div className="text-md breadcrumbs">
@@ -52,7 +69,9 @@ const SingleProduct = () => {
                   return (
                     <button
                       key={color}
-                      className={`badge w-6 h-6 mr-2 ${color==productColor && " border-2 border-secondary"}`}
+                      className={`badge w-6 h-6 mr-2 ${
+                        color == productColor && " border-2 border-secondary"
+                      }`}
                       style={{ backgroundColor: color }}
                       onClick={() => setProductColor(color)}
                     ></button>
@@ -76,7 +95,7 @@ const SingleProduct = () => {
               </div>
               <div className="mt-10">
                 <button
-                  onClick={() => console.log("add to bag")}
+                  onClick={addToCart()}
                   className="btn btn-secondary btn-md capitalize"
                 >
                   Add to Bag

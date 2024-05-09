@@ -11,7 +11,6 @@ const FormInput = ({ label, type, name, size }) => {
         name={name}
         placeholder="Type here"
         className={`input input-bordered w-full ${size}`}
-        required
       />
     </label>
   );
