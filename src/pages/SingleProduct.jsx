@@ -95,7 +95,7 @@ const SingleProduct = () => {
               </div>
               <div className="mt-10">
                 <button
-                  onClick={addToCart()}
+                  onClick={addToCart}
                   className="btn btn-secondary btn-md capitalize"
                 >
                   Add to Bag
