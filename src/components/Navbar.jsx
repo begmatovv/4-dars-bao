@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
 import Navlinks from "./Navlinks";
-
+import { useSelector } from "react-redux";
 const themes = {
   winter: "winter",
   dracula: "dracula",
@@ -15,6 +15,7 @@ function LocalStorageTheme() {
 }
 
 const Navbar = () => {
+  const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
   const [theme, setTheme] = useState(LocalStorageTheme());
   function handleClick() {
     const newTheme = theme === themes.winter ? themes.dracula : themes.winter;
@@ -66,19 +67,19 @@ const Navbar = () => {
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input type="checkbox" onClick={handleClick} />
-            
+
             {/* sun icon */}
             <FaSun className="swap-on fill-current w-6 h-6" />
 
             {/* moon icon */}
             <FaMoon className="swap-off fill-current w-6 h-6" />
           </label>
-          <div className="indicator mr-3">
+          <Link to="/cart" className="indicator mr-3">
             <AiOutlineShoppingCart className="w-6 h-6 " />
             <span className="badge badge-sm badge-primary indicator-item">
-              0
+              {numItemsInCart}
             </span>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
