@@ -8,17 +8,17 @@ const links = [
   },
   {
     id: 2,
-    text: "About",
-    link: "/about",
+    text: "Headphones",
+    link: "/headphones",
   },
   {
     id: 3,
-    text: "Products",
-    link: "/products",
+    text: "Speakers",
+    link: "/speakers",
   },
   {
     id: 4,
-    text: "Cart",
+    text: "Earphones",
     link: "/cart",
   },
   {
